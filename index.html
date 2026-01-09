@@ -127,7 +127,7 @@
 	    		</div>
 	    		<div class="book p-4">
 	    			<h3>Book a Table</h3>
-	    			<form action="#" class="appointment-form">
+	    			<form id="appointmentForm" class="appointment-form" novalidate>
 	    				<div class="d-md-flex">
 		    				<div class="form-group">
 		    					<input type="text" class="form-control" placeholder="First Name">
@@ -184,9 +184,9 @@
           <div class="row">
             <div class="col-md-3">
               <div class="menu-entry">
-                <a href="#" class="img" style="background-image: url(images/menu-1.jpg); height: 200px; display: block;"></a>
+                <a href="menu.html" class="img" style="background-image: url(images/menu-1.jpg); height: 200px; display: block;"></a>
                 <div class="text text-center pt-4">
-                  <h3><a href="#">Cookies & Cream</a></h3>
+                  <h3><a href="menu.html">Cookies & Cream</a></h3>
                   <p class="black-text">A creamy, indulgent blend of rich vanilla and crunchy chocolate cookie bits, topped with a velvety cloud of whipped cream.</p>
                 </div>
               </div>
@@ -194,9 +194,9 @@
 
             <div class="col-md-3">
               <div class="menu-entry">
-                <a href="#" class="img" style="background-image: url(images/menu-2.jpg); height: 200px; display: block;"></a>
+                <a href="menu.html" class="img" style="background-image: url(images/menu-2.jpg); height: 200px; display: block;"></a>
                 <div class="text text-center pt-4">
-                  <h3><a href="#">Brownie Temptation</a></h3>
+                  <h3><a href="menu.html">Brownie Temptation</a></h3>
                   <p class="black-text">A decadent, fudgy brownie served warm, offering a perfect balance of deep cocoa and a soft, melt-in-your-mouth texture.</p>
                 </div>
               </div>
@@ -204,9 +204,9 @@
 
             <div class="col-md-3">
               <div class="menu-entry">
-                <a href="#" class="img" style="background-image: url(images/menu-3.jpg); height: 200px; display: block;"></a>
+                <a href="menu.html" class="img" style="background-image: url(images/menu-3.jpg); height: 200px; display: block;"></a>
                 <div class="text text-center pt-4">
-                  <h3><a href="#">Sisig Silog</a></h3>
+                  <h3><a href="menu.html">Sisig Silog</a></h3>
                   <p class="black-text">A savory Filipino classic featuring crispy, seasoned sisig paired with garlic fried rice and a perfectly cooked egg for a hearty, soul-satisfying meal.</p>
                 </div>
               </div>
@@ -214,9 +214,9 @@
 
             <div class="col-md-3">
               <div class="menu-entry">
-                <a href="#" class="img" style="background-image: url(images/menu-4.jpg); height: 200px; display: block;"></a>
+                <a href="menu.html" class="img" style="background-image: url(images/menu-4.jpg); height: 200px; display: block;"></a>
                 <div class="text text-center pt-4">
-                  <h3><a href="#">Chicken Teriyaki</a></h3>
+                  <h3><a href="menu.html">Chicken Teriyaki</a></h3>
                   <p class="black-text">Tender, juicy chicken glazed in a sweet and savory homemade teriyaki sauce, served as a high-quality, flavorful meal option.</p>
                 </div>
               </div>
@@ -406,8 +406,8 @@
           </a>
           <div class="text py-4 d-block">
             <div class="meta">
-              <div><a href="#">Sweets N Verse</a></div>
-              <div><a href="#">12/25/2025</a></div>
+              <div><a href="gallery.html">Sweets N Verse</a></div>
+              <div><a href="gallery.html">12/25/2025</a></div>
             </div>
             <h3 class="heading mt-2"><a href="#">Christmas Memories at Sweets N Verse</a></h3>
             <p style="color: #000;">The heart of the holidays is always found where people gather. On Christmas Day, our cafe was filled with the warmth of family, friends, and shared stories.</p>
@@ -425,8 +425,8 @@
           </a>
           <div class="text py-4 d-block">
             <div class="meta">
-              <div><a href="#">Sweets N Verse</a></div>
-              <div><a href="#">12/07/2025</a></div>
+              <div><a href="gallery.html">Sweets N Verse</a></div>
+              <div><a href="gallery.html">12/07/2025</a></div>
             </div>
             <h3 class="heading mt-2"><a href="#">Happy Christening! 🍼👼🏻</a></h3>
             <p style="color: #000">A warm celebration for a beautiful beginning. Our space was honored to host this special Christening gathering, bringing family together in a cozy and joyful atmosphere.</p>
@@ -444,8 +444,8 @@
           </a>
           <div class="text py-4 d-block">
             <div class="meta">
-              <div><a href="#">Sweets N Verse</a></div>
-              <div><a href="#">11/22/2025</a></div>
+              <div><a href="gallery.html">Sweets N Verse</a></div>
+              <div><a href="gallery.html">11/22/2025</a></div>
             </div>
             <h3 class="heading mt-2"><a href="#">Happy Saturday at Sweets N Verse!</a></h3>
             <p style="color: #000">There is no better way to spend your Saturday than surrounded by good food and even better company. Whether you're here for a weekend family lunch or just to unwind with your favorite sweet drink, our doors are open to make your weekend a little brighter.</p>
@@ -519,5 +519,33 @@
   background-size: 100%, 100%;
 }
 </style>
+
+<script>
+document.getElementById("appointmentForm").addEventListener("submit", function (e) {
+  e.preventDefault(); // ALWAYS stop submit first
+
+  let isValid = true;
+  const fields = this.querySelectorAll("input, textarea");
+
+  fields.forEach(field => {
+    if (field.value.trim() === "") {
+      isValid = false;
+      field.style.border = "2px solid red"; // visual feedback
+    } else {
+      field.style.border = "";
+    }
+  });
+
+  if (!isValid) {
+    alert("⚠️ Please complete all fields before submitting.");
+    return;
+  }
+
+  alert("✅ Appointment submitted successfully!");
+  this.reset();
+});
+</script>
+
+
   </body>
 </html>
